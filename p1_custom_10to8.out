@@ -1,0 +1,26 @@
+Process 1 received data from Process 0
+Process 2 received data from Process 0
+Process 2 sent data to Processes 8 and 12
+Process 6 received data from Process 1
+Process 6 sent data to Process 5
+Process Process 3 received data from Process 0
+Process 3 sent data to Processes 4 and 14
+0 sent data to Processes 1, 2, and 3
+Process Process 12 received data from Process 2
+8 received data from Process 2
+Process 8 sent data to Process 7
+Process 5 received data from Process 6
+Process Process 10 received data from Process 1
+Process 10 sent data to Process 11
+1 sent data to Processes 6 and 10
+Process 4 received data from Process 3
+Process 4 sent data to Process 9
+Process Process 13 received data from Process 12
+12 sent data to Process 13
+Process 14 received data from Process 3
+Process 7 received data from Process 8
+Process 11 received data from Process 10
+Process 14 sent data to Process 15
+Process 15 received data from Process 14
+Process 9 received data from Process 4
+Total time spent broadcasting a vector with 100000000 elements: 9.91746s
