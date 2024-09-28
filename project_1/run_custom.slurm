@@ -13,7 +13,7 @@
 module load mvapich2/gcc12.1/2.3.7
 
 # compile C++ code
-mpicxx -o mpi_p1 /gpfs/home/jburzachiell/code/ams361/project1/p1_custom.cxx
+mpicxx -o mpi_p1 /gpfs/home/jburzachiell/code/ams530/project1/p1_custom.cxx
 
 # execute C++ code
 mpirun -np 16 ./mpi_p1

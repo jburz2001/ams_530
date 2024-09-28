@@ -25,22 +25,23 @@ int main(int argc, char** argv) {
     MPI_Comm graph_comm;
     MPI_Graph_create(MPI_COMM_WORLD, 16, index, edges, false, &graph_comm);
 
+
     switch (rank) {
         case 0: {     
-            std::vector<int> data;
-            data.resize(vector_size, 42);
+            std::vector<double> data;
+            data.resize(vector_size, 42.0);
 
             MPI_Request request_s0;
-            MPI_Isend(data.data(), vector_size, MPI_INT, 1, rank, graph_comm, &request_s0);
+            MPI_Isend(data.data(), vector_size, MPI_FLOAT, 1, rank, graph_comm, &request_s0);
             MPI_Wait(&request_s0, MPI_STATUS_IGNORE);
             MPI_Request request_s1;
-            MPI_Isend(data.data(), vector_size, MPI_INT, 2, rank, graph_comm, &request_s1);
+            MPI_Isend(data.data(), vector_size, MPI_FLOAT, 2, rank, graph_comm, &request_s1);
             MPI_Wait(&request_s1, MPI_STATUS_IGNORE);
             MPI_Request request_s2;
-            MPI_Isend(data.data(), vector_size, MPI_INT, 3, rank, graph_comm, &request_s2);
+            MPI_Isend(data.data(), vector_size, MPI_FLOAT, 3, rank, graph_comm, &request_s2);
             MPI_Wait(&request_s2, MPI_STATUS_IGNORE);
             
-            std::cout << "Process " << rank << " sent data to Processes 1, 2, and 3" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Processes 1, 2, and 3" << std::endl;
             break;
         }
         case 1: {
@@ -48,19 +49,19 @@ int main(int argc, char** argv) {
             int src = 0;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 	    
-	    MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 6,  rank, graph_comm, &request_s0);
+	        MPI_Request request_s0;
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 6,  rank, graph_comm, &request_s0);
             MPI_Wait(&request_s0, MPI_STATUS_IGNORE);
-	    MPI_Request request_s1;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 10, rank, graph_comm, &request_s1);
+	        MPI_Request request_s1;
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 10, rank, graph_comm, &request_s1);
             MPI_Wait(&request_s1, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " sent data to Processes 6 and 10" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Processes 6 and 10" << std::endl;
             break;
         }
         case 2: {
@@ -68,17 +69,17 @@ int main(int argc, char** argv) {
             int src = 0;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 8,  rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 8,  rank, graph_comm, &request_s0);
             MPI_Request request_s1;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 12, rank, graph_comm, &request_s1);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 12, rank, graph_comm, &request_s1);
 
-            std::cout << "Process " << rank << " sent data to Processes 8 and 12" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Processes 8 and 12" << std::endl;
             break;
         }
         case 3: {
@@ -86,17 +87,17 @@ int main(int argc, char** argv) {
             int src = 0;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 4,  rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 4,  rank, graph_comm, &request_s0);
             MPI_Request request_s1;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 14, rank, graph_comm, &request_s1);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 14, rank, graph_comm, &request_s1);
 
-            std::cout << "Process " << rank << " sent data to Processes 4 and 14" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Processes 4 and 14" << std::endl;
             break;
         }
         case 4: {
@@ -104,15 +105,15 @@ int main(int argc, char** argv) {
             int src = 3;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 9, rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 9, rank, graph_comm, &request_s0);
 
-            std::cout << "Process " << rank << " sent data to Process 9" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 9" << std::endl;
             break;
         }
         case 5: {
@@ -120,10 +121,10 @@ int main(int argc, char** argv) {
             int src = 6;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         case 6: {
@@ -131,15 +132,15 @@ int main(int argc, char** argv) {
             int src = 1;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 5, rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 5, rank, graph_comm, &request_s0);
 
-            std::cout << "Process " << rank << " sent data to Process 5" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 5" << std::endl;
             break;
         }
         case 7: {
@@ -147,10 +148,10 @@ int main(int argc, char** argv) {
             int src = 8;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         case 8: {
@@ -158,15 +159,15 @@ int main(int argc, char** argv) {
             int src = 2;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 7, rank, graph_comm, &request_r0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 7, rank, graph_comm, &request_r0);
 
-            std::cout << "Process " << rank << " sent data to Process 7" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 7" << std::endl;
             break;
         }
         case 9: {
@@ -174,10 +175,10 @@ int main(int argc, char** argv) {
             int src = 4;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         case 10: {
@@ -185,15 +186,15 @@ int main(int argc, char** argv) {
             int src = 1;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 11, rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 11, rank, graph_comm, &request_s0);
 
-            std::cout << "Process " << rank << " sent data to Process 11" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 11" << std::endl;
             break;
         }
         case 11: {
@@ -201,10 +202,10 @@ int main(int argc, char** argv) {
             int src = 10;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         case 12: {
@@ -212,16 +213,16 @@ int main(int argc, char** argv) {
             int src = 2;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 13, rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 13, rank, graph_comm, &request_s0);
             MPI_Wait(&request_s0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " sent data to Process 13" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 13" << std::endl;
             break;
         }
         case 13: {
@@ -229,10 +230,10 @@ int main(int argc, char** argv) {
             int src = 12;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         case 14: {
@@ -240,16 +241,16 @@ int main(int argc, char** argv) {
             int src = 3;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
 
             MPI_Request request_s0;
-            MPI_Isend(recv_data.data(), vector_size, MPI_INT, 15, rank, graph_comm, &request_s0);
+            MPI_Isend(recv_data.data(), vector_size, MPI_FLOAT, 15, rank, graph_comm, &request_s0);
             MPI_Wait(&request_s0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " sent data to Process 15" << std::endl;
+            //std::cout << "Process " << rank << " sent data to Process 15" << std::endl;
             break;
         }
         case 15: {
@@ -257,10 +258,10 @@ int main(int argc, char** argv) {
             int src = 14;
 
             MPI_Request request_r0;
-            MPI_Irecv(recv_data.data(), vector_size, MPI_INT, src, src, graph_comm, &request_r0);
+            MPI_Irecv(recv_data.data(), vector_size, MPI_FLOAT, src, src, graph_comm, &request_r0);
             MPI_Wait(&request_r0, MPI_STATUS_IGNORE);
 
-            std::cout << "Process " << rank << " received data from Process " << src << std::endl;
+            //std::cout << "Process " << rank << " received data from Process " << src << std::endl;
             break;
         }
         default: {
