@@ -1,0 +1,44 @@
+Loading mvapich2/gcc12.1/2.3.7
+  Loading requirement: gcc/12.1.0
+
+MPI_Allgather for network Bid32 with N = 10 completed in 0.000034 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 20 completed in 0.000579 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 30 completed in 0.000020 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 40 completed in 0.000056 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 100 completed in 0.000140 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 200 completed in 0.000076 seconds.
+
+
+MPI_Allgather for network Bid32 with N = 300 completed in 0.000086 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 10 completed in 0.000007 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 20 completed in 0.000008 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 30 completed in 0.000031 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 40 completed in 0.000011 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 100 completed in 0.000027 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 200 completed in 0.000042 seconds.
+
+
+MPI_Allgather for network Opt32 with N = 300 completed in 0.000078 seconds.
+
