@@ -1,0 +1,4 @@
+#!/bin/bash
+sbatch run_j.slurm
+sleep 1
+rm ./slurm*.out

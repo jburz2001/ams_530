@@ -1,0 +1,4 @@
+#!/bin/bash
+sbatch run_j_test_128x128.slurm
+sleep 1
+rm ./slurm*.out
