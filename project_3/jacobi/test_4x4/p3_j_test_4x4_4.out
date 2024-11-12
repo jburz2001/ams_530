@@ -1,12 +1,8 @@
 JACOBI
-Total elapsed time (global) with 4 processors:
-0.00126219
-Max elapsed time (global) with 4 processors:
-0.00032115
-
+Elapsed time (root node) with 4 processors:
+0.000384569
 Approximate final solution vector:
 0.07692 0.07692 0.07692 0.07692 
-
-Residual infinity norm for iterations 0..9:
+Residual infinity norm for iterations:
 0.3 -0.09 0.027 -0.0081 0.00243 -0.000729 0.0002187 -6.561e-05 1.968e-05 -5.905e-06 
 

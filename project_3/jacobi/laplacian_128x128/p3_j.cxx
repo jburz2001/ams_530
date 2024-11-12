@@ -195,21 +195,29 @@ int main(int argc, char** argv) {
 	//
     }
 
+    /*
     double end_time = MPI_Wtime();
     double local_elapsed_time = end_time - start_time;
     double total_elapsed_time;
     double max_elapsed_time;
     MPI_Allreduce(&local_elapsed_time, &total_elapsed_time, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
     MPI_Allreduce(&local_elapsed_time, &max_elapsed_time, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    */
 
     // Final output from each processor
+    /*
     for (int i = 0; i < rows_per_proc; ++i) {
-        //std::cout << "Processor " << rank << ": x[" << start_row + i << "] = " << x_local[i] << std::endl;
+        std::cout << "Processor " << rank << ": x[" << start_row + i << "] = " << x_local[i] << std::endl;
     }
+    */
 
     if (rank == 0) {
 	std::cout << "JACOBI\n";
 
+	std::cout << "Elapsed time (root node) with " << size << " processors:\n";
+	std::cout << MPI_Wtime() - start_time << std::endl;
+
+	/*
 	std::cout << "Total elapsed time (global) with " << size << " processors:\n";
 	std::cout << total_elapsed_time;
 	std::cout << std::endl;
@@ -217,6 +225,7 @@ int main(int argc, char** argv) {
 	std::cout << "Max elapsed time (global) with " << size << " processors:\n";
 	std::cout << max_elapsed_time;
 	std::cout << std::endl << std::endl;
+        */
 	
 	//
         std::cout << "Approximate final solution vector:\n";
@@ -228,8 +237,8 @@ int main(int argc, char** argv) {
         for (const auto& error : errors) {
             std::cout << std::setprecision(4) << error << " ";
         }
-        std::cout << std::endl << std::endl;
 	//
+        std::cout << std::endl;
     }
 
     // Finalize MPI
