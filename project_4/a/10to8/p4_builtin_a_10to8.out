@@ -1,0 +1,4 @@
+Loading gcc-stack
+  Loading requirement: gcc/13.2.0 mvapich2/gcc13.2/2.3.7
+BUILTIN: Total time spent broadcasting a vector with 100000000 elements:
+0.324819s
